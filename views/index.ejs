@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/styles/styles.css">
+    <title>Blog Post</title>
+</head>
+<body>
+    <header>
+        <h1>Blog Posts</h1>
+        <p>This is a Blog Webapge where you can post, view, edit, and delete other posts.</p>
+    </header>
+    <div class="button-container">
+        <a href="/post">Create Post!</a>
+    </div>
+    <ul>
+        <!-- for each post in the index -->
+        <% posts.forEach((post, index) => { %>
+            <li>
+                <h2><%= post.title %></h2>
+                <p>Author: <%= post.name %></p>
+                <p>Date Posted: <%= post.time %></p>
+                <p>Content: <%= post.content %></p>
+                <form action="/edit" method="post" style="display:inline;">
+                    <input type="hidden" name="index" value="<%= index %>">
+                    <input type="text" name="title" value="post.title">
+                    <textarea name="content"><%= post.content %></textarea>
+                    <button type="submit">Edit Post</button>
+                </form>
+                <form action="/delete" method="post" style="display:inline;">
+                    <input type="hidden" name="index" value="<%= index %>">
+                    <button type="submit">Delete Post</button>
+                </form>
+            </li>
+        <% }) %>
+    </ul>
+</body>
+</html>
